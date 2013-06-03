@@ -10,10 +10,10 @@ Licensing:
 You may use the source code contained within this project for free and open source applications only. 
 
 The entire project may be used for medical practice in camps / hospitals where treatment / advice is provided 
-free to patients.
-
-If however you charge your patients for treatment / advice, you will need to purchase a commercial license (100$) which
+free to patients. If however you charge your patients for treatment / advice, you will need to purchase a commercial license which
 will help me keep this project alive.
+
+Please reach me at : shashankan.10@gmail.com to discuss licensing / if you have any problems getting this project to run / suggestions for me.
 
 Usage:
 =====
