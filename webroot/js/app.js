@@ -11,14 +11,42 @@ setCurrentUserContext = function(userId){
 	});
 }*/
 Bancha.onModelReady(['User','History'], function() {
-	Ext.create('Ext.container.Viewport',{
+	var viewport = Ext.create('Ext.container.Viewport',{
 		layout:'border',
-		items:[
-		{
-			xtype:'grid-patients',
+		broadcast:function(userId){
+			var childComponents = [
+				'form-patientdetails',
+				'form-history',
+				'form-nutritionalstatus',
+				'form-pressurepointdistributionassessment',
+				'form-advice'
+			];
+			Ext.each(childComponents,function(currentComponentId){
+				var currentComponent = viewport.down(currentComponentId);
+				if (currentComponent.loadUser){
+					currentComponent.loadUser.call(currentComponent,userId);
+				}
+			});
+		},
+		items:[{
 			region:'west',
 			width:500,
-			split:true
+			split:true,
+			layout:'border',
+			items:[{
+				xtype:'form-patientdetails',
+				region:'north',
+				height:300
+			},{
+				xtype:'grid-patients',
+				region:'center',
+				listeners:{
+					cellclick:function(scope, td, cellIndex, record, tr, rowIndex, e, eOpts){
+						var id = record.get('id');
+						viewport.broadcast.call(viewport,id);
+					}
+				}
+			}]
 		},{
 			xtype:'tabpanel',
 			region:'center',
@@ -31,6 +59,9 @@ Bancha.onModelReady(['User','History'], function() {
 			},{
 				xtype:'form-pressurepointdistributionassessment',
 				title:'PPDA'
+			},{
+				xtype:'form-advice',
+				title:'Advice'
 			}]
 		}]
 	});

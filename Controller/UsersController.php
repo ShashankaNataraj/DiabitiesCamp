@@ -40,6 +40,7 @@ class UsersController extends AppController {
 	 * @return void
 	 */
 	public function view($id = null) {
+		$this->layout = 'ajax';
 		$this->User->id = $id;
 		if (!$this->User->exists()) {
 			throw new NotFoundException(__('Invalid user'));

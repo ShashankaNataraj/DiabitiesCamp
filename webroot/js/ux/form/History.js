@@ -3,6 +3,7 @@ Ext.define('DiabitiesCamp.form.History', {
     alias: 'widget.form-history',
 	title:'Patient History',
     autoHeight: true,
+	autoScroll:true,
 	// some additional styles
 	frame:true,
 	bodyStyle:'padding:5px 5px 0',
@@ -16,6 +17,24 @@ Ext.define('DiabitiesCamp.form.History', {
 	},
 	items:[{
 			xtype: 'fieldset',
+			title: 'Lifestyle',
+			items: [{
+				xtype:'radiogroup',
+				items:[
+					{ boxLabel: 'Sedentary', name: 'lifestyle', inputValue: '0' },
+					{ boxLabel: 'Minimum activity', name: 'lifestyle', inputValue: '1' },
+					{ boxLabel: 'Moderate activity', name: 'lifestyle', inputValue: '2' },
+					{ boxLabel: 'High activity', name: 'lifestyle', inputValue: '3' },
+					{ boxLabel: 'Athlete', name: 'lifestyle', inputValue: '4' }]
+			},{
+				xtype:'textarea',
+				fieldLabel:'Other findings',
+				name:'lifestyle_findings',
+				anchor: '100%',
+				labelWidth: 200
+			}]
+		},{
+			xtype: 'fieldset',
 			title: 'Visual Examination',
 			items: [
 				{
@@ -24,12 +43,7 @@ Ext.define('DiabitiesCamp.form.History', {
 					labelWidth: 200,
 					items: [
 						{
-							xtype: 'checkboxfield',
-							boxLabel: 'Yes'
-						},
-						{
-							xtype: 'checkboxfield',
-							boxLabel: 'No'
+							xtype: 'checkboxfield'
 						}
 					]
 				},
@@ -39,12 +53,7 @@ Ext.define('DiabitiesCamp.form.History', {
 					labelWidth: 200,
 					items: [
 						{
-							xtype: 'checkboxfield',
-							boxLabel: 'Yes'
-						},
-						{
-							xtype: 'checkboxfield',
-							boxLabel: 'No'
+							xtype: 'checkboxfield'
 						}
 					]
 				},
@@ -54,12 +63,7 @@ Ext.define('DiabitiesCamp.form.History', {
 					labelWidth: 200,
 					items: [
 						{
-							xtype: 'checkboxfield',
-							boxLabel: 'Yes'
-						},
-						{
-							xtype: 'checkboxfield',
-							boxLabel: 'No'
+							xtype: 'checkboxfield'
 						}
 					]
 				},
@@ -69,12 +73,7 @@ Ext.define('DiabitiesCamp.form.History', {
 					labelWidth: 200,
 					items: [
 						{
-							xtype: 'checkboxfield',
-							boxLabel: 'Yes'
-						},
-						{
-							xtype: 'checkboxfield',
-							boxLabel: 'No'
+							xtype: 'checkboxfield'
 						}
 					]
 				},
@@ -84,14 +83,16 @@ Ext.define('DiabitiesCamp.form.History', {
 					labelWidth: 200,
 					items: [
 						{
-							xtype: 'checkboxfield',
-							boxLabel: 'Yes'
-						},
-						{
-							xtype: 'checkboxfield',
-							boxLabel: 'No'
+							xtype: 'checkboxfield'
 						}
 					]
+				},
+				{
+					xtype:'textarea',
+					fieldLabel:'Other findings',
+					name:'visual_examination_findings',
+					labelWidth: 200,
+					anchor: '100%'
 				}
 			]
 		},
@@ -104,6 +105,13 @@ Ext.define('DiabitiesCamp.form.History', {
 					anchor: '100%',
 					fieldLabel: 'Symptoms',
 					labelWidth: 200
+				},
+				{
+					xtype:'textarea',
+					fieldLabel:'Other findings',
+					name:'neuropathy_findings',
+					labelWidth: 200,
+					anchor: '100%'
 				}
 			]
 		},
@@ -117,12 +125,7 @@ Ext.define('DiabitiesCamp.form.History', {
 					labelWidth: 200,
 					items: [
 						{
-							xtype: 'checkboxfield',
-							boxLabel: 'Yes'
-						},
-						{
-							xtype: 'checkboxfield',
-							boxLabel: 'No'
+							xtype: 'checkboxfield'
 						}
 					]
 				},
@@ -132,12 +135,7 @@ Ext.define('DiabitiesCamp.form.History', {
 					labelWidth: 200,
 					items: [
 						{
-							xtype: 'checkboxfield',
-							boxLabel: 'Yes'
-						},
-						{
-							xtype: 'checkboxfield',
-							boxLabel: 'No'
+							xtype: 'checkboxfield'
 						}
 					]
 				},
@@ -147,14 +145,16 @@ Ext.define('DiabitiesCamp.form.History', {
 					labelWidth: 200,
 					items: [
 						{
-							xtype: 'checkboxfield',
-							boxLabel: 'Yes'
-						},
-						{
-							xtype: 'checkboxfield',
-							boxLabel: 'No'
+							xtype: 'checkboxfield'
 						}
 					]
+				},
+				{
+					xtype:'textarea',
+					fieldLabel:'Other findings',
+					name:'vascular_status_findings',
+					labelWidth: 200,
+					anchor: '100%'
 				}
 			]
 		},
@@ -179,6 +179,13 @@ Ext.define('DiabitiesCamp.form.History', {
 					anchor: '100%',
 					fieldLabel: 'Oedema',
 					labelWidth: 200
+				},
+				{
+					xtype:'textarea',
+					fieldLabel:'Other findings',
+					name:'skin_findings',
+					labelWidth: 200,
+					anchor: '100%'
 				}
 			]
 		},
@@ -191,6 +198,13 @@ Ext.define('DiabitiesCamp.form.History', {
 					anchor: '100%',
 					fieldLabel: 'Deformities / Bony Prominences',
 					labelWidth: 200
+				},
+				{
+					xtype:'textarea',
+					fieldLabel:'Other findings',
+					name:'bone_joint_findings',
+					labelWidth: 200,
+					anchor: '100%'
 				}
 			]
 		},
@@ -202,6 +216,13 @@ Ext.define('DiabitiesCamp.form.History', {
 					xtype: 'textfield',
 					anchor: '100%',
 					fieldLabel: 'Assessment of both inside & outside',
+					labelWidth: 200
+				},
+				{
+					xtype:'textarea',
+					anchor: '100%',
+					fieldLabel:'Other findings',
+					name:'footwear_socks_findings',
 					labelWidth: 200
 				}
 			]

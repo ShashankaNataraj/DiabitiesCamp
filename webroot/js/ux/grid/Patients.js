@@ -8,7 +8,7 @@ Ext.define('DiabitiesCamp.panel.Patients' , {
 			id:'store-patients',
 			model: Bancha.getModel('User'),
 			autoLoad: true,
-			pageSize: 25,
+			pageSize: 10,
 			remoteSort: true
 		});
 		Ext.applyIf(this,{
@@ -108,7 +108,11 @@ Ext.define('DiabitiesCamp.panel.Patients' , {
 	removeRecord:function(grid,rowIndex,colIndex){
 		var store = grid.getStore();
 		store.remove(store.getAt(rowIndex));
-		store.sync();
+		store.sync({
+			callback:function(){
+				store.load();
+			}
+		});
 	},
 	editRecord:function(grid, rowIndex, colIndex){
 		var pagingStore = grid.getStore();

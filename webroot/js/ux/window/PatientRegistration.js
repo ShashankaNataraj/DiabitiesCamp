@@ -20,7 +20,7 @@ Ext.define('DiabitiesCamp.window.PatientRegistration', {
 			closed:true
 		});
 		var form = {
-			xtype:'form-patientdetails',
+			xtype:'form-editpatientdetails',
 			mode:me.mode,
 			userId:me.userId,
 			listeners:{
@@ -40,11 +40,6 @@ Ext.define('DiabitiesCamp.window.PatientRegistration', {
 			useWebcamIntegration:true,
 			items:[form],
 			bbar:['->',{
-				text:'Capture',
-				iconCls: 'icon-camera',
-				handler:me.doCapture,
-				scope:this
-			},{
 				text:'Save',
 				iconCls: 'icon-save',
 				handler:me.doSave,
@@ -63,17 +58,17 @@ Ext.define('DiabitiesCamp.window.PatientRegistration', {
 		this.fireEvent('closed');
 	},
 	doSave:function(){
-		if (this.useWebcamIntegration){
+		if (this.useWebcamIntegration && this.mode!="edit"){
 			webcam.set_hook('onComplete', continueSubmit);
 			webcam.snap();
 		}else{
-			this.down('form-patientdetails').validateAndSubmit();
+			this.down('form-editpatientdetails').validateAndSubmit();
 		}
 	}
 });
 
 window.continueSubmit = function(fileName){
-	var form = Ext.ComponentQuery.query('window-patientregistration > form-patientdetails')[0];
-	form.setCurrentPatientPhoto(fileName)
+	var form = Ext.ComponentQuery.query('window-patientregistration > form-editpatientdetails')[0];
+	form.setCurrentPatientPhoto(fileName);
 	form.validateAndSubmit.call(form);
 }
